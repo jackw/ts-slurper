@@ -1,0 +1,12 @@
+[
+  {
+    "pluginId": "jackw-mysuper-app",
+    "repo": "jackw/my-super-app",
+    "types": "src/types"
+  },
+  {
+    "pluginId": "jackw-myother-app",
+    "repo": "jackw/my-other-app",
+    "types": "src/types"
+  }
+]
