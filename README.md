@@ -11,3 +11,9 @@ This repo consists of a script that pulls code from various other repos and plac
 ## How do I add plugins to the package?
 
 There is a [pluginsMetadata.json](./pluginMetadata.json) file in the root of this repo which contains the meta information for the script to create the package contents.
+
+## How to publish releases
+
+As a PoC this repo will only publish the packed package to gh releases. This is to make it easy to install from the tarball attached to a gh release.
+
+To release a new version run `npm version <patch|minor|major>` and push.
