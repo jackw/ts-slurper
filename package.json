@@ -1,6 +1,6 @@
 {
   "name": "extension-types",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A PoC to understand how types can be shared across projects using an npm package and some automations",
   "types": "./dist/index.d.ts",
   "exports": {
