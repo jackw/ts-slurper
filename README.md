@@ -16,4 +16,4 @@ There is a [pluginsMetadata.json](./pluginMetadata.json) file in the root of thi
 
 As a PoC this repo will only publish the packed package to gh releases. This is to make it easy to install from the tarball attached to a gh release.
 
-To release a new version run `npm version <patch|minor|major>` and push.
+To release a new version run `npm version <patch|minor|major>` and push with `git push origin main --follow-tags`.
