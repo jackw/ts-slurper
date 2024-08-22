@@ -11,20 +11,18 @@
   "author": "Jack Westbrook",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.3",
+    "@arethetypeswrong/cli": "^0.15.4",
     "@grafana/tsconfig": "^1.3.0-rc1",
     "@npmcli/package-json": "^5.2.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/lodash": "4.17.4",
     "@types/node": "~20.5.0",
+    "@types/npmcli__package-json": "^4.0.4",
     "jiti": "^1.21.6",
     "rimraf": "^6.0.1",
     "tar": "^7.4.0"
   },
   "engines": {
-    "node": "20.5.0"
-  },
-  "dependencies": {
-    "@types/npmcli__package-json": "^4.0.4"
+    "node": "20"
   }
 }

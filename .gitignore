@@ -124,5 +124,4 @@ dist
 
 # Package building artefacts
 
-src/index.ts
 generatedPackage/
