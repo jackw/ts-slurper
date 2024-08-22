@@ -2,10 +2,6 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "declaration": false,
-    "rootDir": "./src",
-    "baseUrl": "./src",
-    "resolveJsonModule": true
   },
-  "extends": "@grafana/tsconfig",
-  "include": ["src/index.ts"]
+  "extends": "@tsconfig/node20/tsconfig.json"
 }
