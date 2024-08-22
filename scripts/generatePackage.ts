@@ -24,7 +24,7 @@ async function createAliasPackageJsonFiles(typesDirs: TypesDir[]) {
     try {
       const aliasName = `@grafana/plugin-types/${dir.kebabCaseName}`;
       console.log(`📦 Writing alias package.json for ${aliasName}`);
-      const pkgJsonPath = join("generatedPackage", dir.name);
+      const pkgJsonPath = join("generatedPackage", dir.kebabCaseName);
       await mkdir(pkgJsonPath, { recursive: true });
       const pkgJson = await PackageJson.create(pkgJsonPath, {
         data: {
@@ -44,7 +44,7 @@ async function createPackageJsonFile(typesDirs: TypesDir[]) {
   const rootPkgJson = await PackageJson.load("./");
   const exports = typesDirs.reduce(
     (acc, dir) => {
-      acc[`./${dir.name}`] = {
+      acc[`./${dir.kebabCaseName}`] = {
         types: `./dist/${dir.name}/index.d.ts`,
       };
       return acc;
@@ -59,7 +59,7 @@ async function createPackageJsonFile(typesDirs: TypesDir[]) {
 
   const files = [
     "dist",
-    ...typesDirs.map((dir) => dir.name),
+    ...typesDirs.map((dir) => dir.kebabCaseName),
     "package.json",
     "LICENSE",
     "README.md",
