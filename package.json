@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf generatedPackage",
     "generate": "npm run clean && jiti ./scripts/generatePackage.ts",
-    "validate": "attw --pack ./generatedPackage"
+    "validate": "attw --pack ./generatedPackage",
+    "packPackage": "npm pack ./generatedPackage"
   },
   "author": "Jack Westbrook",
   "license": "Apache-2.0",

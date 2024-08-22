@@ -10,7 +10,7 @@ This repo consists of a script that pulls code from various other repos and plac
 
 ## How do I add plugins to the package?
 
-There is a [pluginsMetadata.json](./pluginMetadata.json) file in the root of this repo which contains the meta information for the script to create the package contents.
+Add a new directory to the types directory with your bundled `index.d.ts` file.
 
 ## How to publish releases
 

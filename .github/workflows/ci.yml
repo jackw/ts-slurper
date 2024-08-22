@@ -33,8 +33,7 @@ jobs:
         run: npm run validate
 
       - name: Pack tarball
-        run: npm pack
-        working-directory: "./generatedPackage"
+        run: npm run packPackage
 
       - name: Create GitHub release
         if: startsWith(github.ref, 'refs/tags')
