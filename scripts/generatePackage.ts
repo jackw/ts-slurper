@@ -4,17 +4,17 @@ import PackageJson from "@npmcli/package-json";
 
 type TypesDir = {
   name: string;
-  kebabCaseName: string;
+  camelCaseName: string;
 };
 
 const GENERATED_PACKAGE_DIR = "generatedPackage";
 const DIST_DIR = join(GENERATED_PACKAGE_DIR, "dist");
 
 async function generateBarrelFile(typesDirs: TypesDir[]) {
-  console.log("📦 Generating barrel file");
+  console.log("📦 Writing barrel file.");
   const barrelFile = join(DIST_DIR, "index.d.ts");
   const barrelFileContent = typesDirs.map(
-    (dir) => `export * as ${dir.name} from "./${dir.name}/index";`
+    (dir) => `export * as ${dir.camelCaseName} from "./${dir.name}/index";`
   );
   await writeFile(barrelFile, barrelFileContent.join("\n"));
 }
@@ -22,9 +22,9 @@ async function generateBarrelFile(typesDirs: TypesDir[]) {
 async function createAliasPackageJsonFiles(typesDirs: TypesDir[]) {
   for (const dir of typesDirs) {
     try {
-      const aliasName = `@grafana/plugin-types/${dir.kebabCaseName}`;
-      console.log(`📦 Writing alias package.json for ${aliasName}`);
-      const pkgJsonPath = join("generatedPackage", dir.kebabCaseName);
+      const aliasName = `@grafana/plugin-types/${dir.name}`;
+      console.log(`📦 Writing alias package.json for ${aliasName}.`);
+      const pkgJsonPath = join("generatedPackage", dir.name);
       await mkdir(pkgJsonPath, { recursive: true });
       const pkgJson = await PackageJson.create(pkgJsonPath, {
         data: {
@@ -40,11 +40,11 @@ async function createAliasPackageJsonFiles(typesDirs: TypesDir[]) {
 }
 
 async function createPackageJsonFile(typesDirs: TypesDir[]) {
-  console.log("📦 Writing root package.json");
+  console.log("📦 Writing root package.json.");
   const rootPkgJson = await PackageJson.load("./");
   const exports = typesDirs.reduce(
     (acc, dir) => {
-      acc[`./${dir.kebabCaseName}`] = {
+      acc[`./${dir.name}`] = {
         types: `./dist/${dir.name}/index.d.ts`,
       };
       return acc;
@@ -59,7 +59,7 @@ async function createPackageJsonFile(typesDirs: TypesDir[]) {
 
   const files = [
     "dist",
-    ...typesDirs.map((dir) => dir.kebabCaseName),
+    ...typesDirs.map((dir) => dir.name),
     "package.json",
     "LICENSE",
     "README.md",
@@ -97,12 +97,12 @@ async function generatePackage(typesDirs: TypesDir[]) {
 
 async function copyTypesFiles() {
   const source = "types";
-  console.log(`📁 Copying ${source} to ${DIST_DIR}`);
+  console.log(`📁 Copying ${source} to ${DIST_DIR}.`);
   await cp(source, DIST_DIR, { recursive: true });
 }
 
-function camelToKebab(str: string) {
-  return str.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
+function kebabToCamel(str: string) {
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
 (async () => {
@@ -112,7 +112,7 @@ function camelToKebab(str: string) {
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => ({
       name: dirent.name,
-      kebabCaseName: camelToKebab(dirent.name),
+      camelCaseName: kebabToCamel(dirent.name),
     }));
   await generatePackage(typesDirs);
   const endTime = Date.now().valueOf();
