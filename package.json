@@ -1,6 +1,6 @@
 {
   "name": "extension-types",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A PoC to understand how types can be shared across projects using an npm package and some automations",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
